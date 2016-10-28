@@ -40,12 +40,12 @@ class Process
         $ppid = getmypid();
         file_put_contents($this->config['logPath'] . '/master.pid.log', $ppid . "\n");
 
-        $master_process_name = 'job master ' . $ppid . ' : reserve process';
+        $master_process_name = 'job master ' . $ppid . ' process';
         \swoole_set_process_name($master_process_name);
 
         $reserveProcess = new \swoole_process(function () use ($self, $workNum) {
 
-            $worker_process_name = 'job ' . $workNum . ': reserve process';
+            $worker_process_name = 'job worker' . $workNum . ' process';
             //设置进程名字
             \swoole_set_process_name($worker_process_name);
 
